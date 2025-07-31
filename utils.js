@@ -42,7 +42,9 @@ const assignmentSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const studyGoalSchema = new mongoose.Schema({
-  title: String,
+  subject: String,
+  hoursTarget: Number,
+  currentHours: { type: Number, default: 0 },
   completed: { type: Boolean, default: false },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 }, { timestamps: true });
