@@ -68,8 +68,10 @@ paths:
                 password:
                   type: string
       responses:
-        '200':
+        '201':
           description: JWT token issued
+        '400':
+          description: Email already in use
 
   /assignments:
     get:
@@ -93,14 +95,14 @@ paths:
         '201':
           description: Assignment created
 
-  /assignments/{id}:
+  /assignments?id={id}:
     put:
       summary: Update an assignment
       security:
         - bearerAuth: []
       parameters:
         - name: id
-          in: path
+          in: query
           required: true
           schema:
             type: string
@@ -119,7 +121,7 @@ paths:
         - bearerAuth: []
       parameters:
         - name: id
-          in: path
+          in: query
           required: true
           schema:
             type: string
