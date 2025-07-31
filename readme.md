@@ -8,7 +8,6 @@ Visit [the Swagger Docs](https://assignmint-seven.vercel.app) for more info
 ## Features
 - User sign-up with JWT authentication
 - CRUD for assignments
-- CRUD for study goals
 - Group promises management
 - Dashboard summary endpoint
 
