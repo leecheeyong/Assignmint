@@ -1,0 +1,202 @@
+openapi: 3.0.0
+info:
+  title: Assignmint API
+  version: 1.0.0
+  description: An API for students to manage assignments, study goals, and group promises. Uses JWT-based sign-up-only auth.
+
+servers:
+  - url: https://assignmint-seven.vercel.app/api
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Assignment:
+      type: object
+      required: [title, dueDate]
+      properties:
+        title:
+          type: string
+        dueDate:
+          type: string
+          format: date
+        completed:
+          type: boolean
+
+    StudyGoal:
+      type: object
+      required: [subject, hoursTarget]
+      properties:
+        subject:
+          type: string
+        hoursTarget:
+          type: number
+        currentHours:
+          type: number
+
+    GroupPromise:
+      type: object
+      required: [title, members]
+      properties:
+        title:
+          type: string
+        members:
+          type: array
+          items:
+            type: string
+        completed:
+          type: boolean
+
+paths:
+  /auth:
+    post:
+      summary: Sign up and receive JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: JWT token issued
+
+  /assignments:
+    get:
+      summary: Get all assignments
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of assignments
+    post:
+      summary: Create a new assignment
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Assignment'
+      responses:
+        '201':
+          description: Assignment created
+
+  /assignments/{id}:
+    put:
+      summary: Update an assignment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Assignment'
+      responses:
+        '200':
+          description: Assignment updated
+    delete:
+      summary: Delete an assignment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Assignment deleted
+
+  /study-goals:
+    get:
+      summary: Get all study goals
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of study goals
+    post:
+      summary: Create a study goal
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudyGoal'
+      responses:
+        '201':
+          description: Study goal created
+
+  /study-goals/{id}:
+    put:
+      summary: Update a study goal
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudyGoal'
+      responses:
+        '200':
+          description: Study goal updated
+
+  /group-promises:
+    get:
+      summary: Get all group promises
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of group promises
+    post:
+      summary: Create a group promise
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPromise'
+      responses:
+        '201':
+          description: Group promise created
+
+  /dashboard-summary:
+    get:
+      summary: Get a summary of dashboard stats
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Dashboard summary
