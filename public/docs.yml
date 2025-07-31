@@ -2,7 +2,10 @@ openapi: 3.0.0
 info:
   title: Assignmint API
   version: 1.0.0
-  description: An API for students to manage assignments, study goals, and group promises. Uses JWT-based sign-up-only auth.
+  description: | 
+      An API for students to manage assignments, study goals, and group promises. Uses JWT-based sign-up-only auth.
+      [Github Repository](https://github.com/leecheeyong/Assignmint)
+      [MIT License](https://github.com/leecheeyong/Assignmint/blob/main/LICENSE)
 
 servers:
   - url: https://assignmint-seven.vercel.app/api
