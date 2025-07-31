@@ -171,6 +171,19 @@ paths:
       responses:
         '200':
           description: Study goal updated
+    delete:
+      summary: Delete a study goal
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Study goal deleted
 
   /group-promises:
     get:
