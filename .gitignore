@@ -1,0 +1,13 @@
+.env
+node_modules
+package-lock.json
+dist
+coverage
+.DS_Store
+.vscode
+.idea
+*.log
+*.env.local
+*.env.development
+*.env.test
+*.env.production
