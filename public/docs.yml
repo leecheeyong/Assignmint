@@ -40,11 +40,11 @@ components:
 
     GroupPromise:
       type: object
-      required: [title, members]
+      required: [title, teamMembers]
       properties:
         title:
           type: string
-        members:
+        teamMembers:
           type: array
           items:
             type: string
