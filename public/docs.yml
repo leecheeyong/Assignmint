@@ -95,14 +95,14 @@ paths:
         '201':
           description: Assignment created
 
-  /assignments?id={id}:
+  /assignments/{id}:
     put:
       summary: Update an assignment
       security:
         - bearerAuth: []
       parameters:
         - name: id
-          in: query
+          in: path
           required: true
           schema:
             type: string
@@ -121,7 +121,7 @@ paths:
         - bearerAuth: []
       parameters:
         - name: id
-          in: query
+          in: path
           required: true
           schema:
             type: string
